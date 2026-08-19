@@ -18,8 +18,6 @@ A Streamlit-based AI blog generation application powered by Llama 2 7B running l
 - Specify approximate word count
 - Download generated blogs as `.txt`
 - Local LLM inference using llama.cpp
-- Docker-ready deployment
-- Hugging Face deployment support
 
 ## Tech Stack
 
@@ -32,8 +30,7 @@ A Streamlit-based AI blog generation application powered by Llama 2 7B running l
 | llama.cpp | Local model inference |
 | llama-cpp-python | Python bindings for llama.cpp |
 | LangChain | Prompt management |
-| Hugging Face Hub | Model hosting |
-| Docker | Deployment |
+
 
 ## Project Structure
 
@@ -42,7 +39,6 @@ Blog Generation/
 │
 ├── app.py
 ├── requirements.txt
-├── Dockerfile
 ├── README.md
 ├── .gitignore
 │
@@ -52,23 +48,7 @@ Blog Generation/
 
 The GGUF model should not be committed to GitHub because it is several GB in size.
 
-For deployment, the recommended architecture is:
 
-```text
-GitHub
-   |
-   | Application source code
-   |
-   v
-Hugging Face Space
-   |
-   | Downloads model
-   v
-Hugging Face Model Repository
-   |
-   v
-Llama 2 7B GGUF
-```
 
 ## How It Works
 
@@ -237,62 +217,15 @@ llm = LlamaCpp(
 
 CPU inference can be relatively slow depending on the hardware.
 
-## Docker
 
-The project includes a `Dockerfile` for deployment.
-
-Build the Docker image:
-
-```bash
-docker build -t blogcraft-ai .
-```
-
-Run the container:
-
-```bash
-docker run -p 7860:7860 blogcraft-ai
-```
 
 The application will be available at:
 
 ```text
 http://localhost:7860
 ```
+                    v
 
-## Hugging Face Deployment
-
-For deployment, the recommended architecture is to host the application and model separately.
-
-```text
-                 Hugging Face
-                      |
-          +-----------+-----------+
-          |                       |
-          v                       v
-     Docker Space          Model Repository
-          |                       |
-          |                       |
-          +---- hf_hub_download --+
-                      |
-                      v
-             Llama 2 GGUF Model
-                      |
-                      v
-                   llama.cpp
-                      |
-                      v
-                  Streamlit
-```
-
-The GGUF model can be hosted in a Hugging Face Model Repository.
-
-Example:
-
-```text
-YOUR_USERNAME/
-└── llama-2-7b-chat-q4-k-m
-    └── llama-2-7b-chat.Q4_K_M.gguf
-```
 
 The application can download the model using:
 
