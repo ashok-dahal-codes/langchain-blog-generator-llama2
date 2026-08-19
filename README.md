@@ -3,8 +3,14 @@
 A Streamlit-based AI blog generation application powered by Llama 2 7B running locally through llama.cpp. The application uses LangChain for prompt management and provides an interface for generating blog posts for different audiences.
 
 > No OpenAI API key is required. The application uses a GGUF version of Llama 2 for local inference.
+## If Everything works perfectly you would get the result as below: 
+### some waiting time is cut on the video below, expect high or low waiting time based on CPU specifications : 
+https://github.com/user-attachments/assets/149c6ea2-77f7-442d-b26d-d71ec5ba0589
 
 ## Features
+
+
+
 
 - Generate blog posts from any topic
 - Powered by Llama 2 7B
